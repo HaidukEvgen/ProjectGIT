@@ -340,8 +340,103 @@ public class Converter {
 
     }
     public static void Length() {
+        double result;
+        boolean isIncorrect;
 
+        // Интерфейс
+        System.out.println("Вы выбрали перевод единиц длины");
+        System.out.println("Используйте следующие коды для ввода выбранной единицы длины:\n 1 - Километры \n 2 - Метры \n 3 - Дециметры \n 4 - Сантиметры \n 5 - Миллиметры");
+
+        //Ввод первой величины и проверка
+
+        Scanner in = new Scanner(System.in);
+        int choice = 0;
+        do {
+            isIncorrect = false;
+            System.out.print("Выберите величину ввода:");
+            try {
+                choice = Integer.parseInt(in.nextLine());
+            } catch (Exception e) {
+                System.out.println("Вы ввели неподходящий код величины");
+                isIncorrect = true;
+            }
+            if (!isIncorrect && (choice < 0) || (choice > 5)) {
+                System.out.println("Вы ввели неподходящий код величины");
+                choice = 0;
+                isIncorrect = true;
+            }
+        } while (isIncorrect);
+        String inType;
+        switch (choice) {
+            case 1 -> inType = "Километры >> ";
+            case 2 -> inType = "Метры >> ";
+            case 3 -> inType = "Дециметры >> ";
+            case 4 -> inType = "Сантиметры >> ";
+            case 5 -> inType = "Миллиметры >> ";
+            default -> {
+                return;
+            }
+        }
+        //Ввод второй величины и проверка
+        int output = 0;
+        do {
+            isIncorrect = false;
+            System.out.print("Выберите величиу вывода:");
+            try {
+                output = Integer.parseInt(in.nextLine());
+            } catch (Exception e) {
+                System.out.println("Вы ввели неподходящий код величины");
+                isIncorrect = true;
+            }
+            if (!isIncorrect && (output < 1) || (output > 5)) {
+                System.out.println("Вы ввели неподходящий код величины");
+                output = 0;
+                isIncorrect = true;
+            }
+            if (!isIncorrect && choice == output) {
+                System.out.println("Та же величина не может быть конвертирована");
+                isIncorrect = true;
+            }
+        } while (isIncorrect);
+
+        //Ввод суммы перевода
+        double input = 0;
+        do {
+            isIncorrect = false;
+            System.out.print("Введите число для конвертации из " + inType);
+            try {
+                input = Double.parseDouble(in.nextLine());
+            } catch (Exception e) {
+                System.out.println("Вы ввели неподходящее число");
+                isIncorrect = true;
+            }
+            if (!isIncorrect && (input <= 0)) {
+                System.out.println("Вы ввели неподходяще число");
+                input = 0;
+                isIncorrect = true;
+            }
+        } while (isIncorrect);
+
+        if (choice == 1 && output == 2) {
+            double km_m_rate = 1000;
+            result = input * km_m_rate;
+            System.out.printf("Километр в метр: %f км = %.0f м\n", input, result);
+        } else if (choice == 1 && output == 3) {
+            double km_dcm_rate = 10000;
+            result = input * km_dcm_rate;
+            System.out.printf("Километр в дециметр: %f км = %.0f дм\n", input, result);
+        } else if (choice == 1 && output == 4) {
+            double km_cm_rate = 100000;
+            result = input * km_cm_rate;
+            System.out.printf("Километр в сантиметр: %f км = %.0f см\n", input, result);
+        } else if (choice == 1) {
+            double km_mm_rate = 1000000;
+            result = input * km_mm_rate;
+            System.out.printf("Километр в миллиметр: %f км = %.0f мм\n", input, result);
+        }
     }
+
+
     public static void Time() {
 
     }
