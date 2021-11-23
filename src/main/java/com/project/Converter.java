@@ -99,6 +99,7 @@ public class Converter {
         return input;
     }
 
+
     /**
      * Method is used to create an interface of the conversion of Currency, after user chooses the dimension Currency
      * It calls getChoice, getInput, getOutput methods to get dimensions for conversion
